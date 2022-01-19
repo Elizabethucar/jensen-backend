@@ -16,23 +16,20 @@ app.use(function (req, res, next) {
 app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
+app.use('/healthcheck', require('./routes/healthcheck.routes'));
+
 app.get("/", (req ,res)=>{
-   const encodedAuth = (req.headers.authorization || '').split(' ')[1] || '' // getting the part after Basic
-   const [user, password] = Buffer.from(encodedAuth, 'base64')
-      .toString().split(':')
-      if(user===credentials.secretUser && password===credentials.secretPassword){
-         res.status(200).send({"STATUS":"SUCCESS"})
-         console.log("Logged in")
-     }else{
-         res.set('WWW-Authenticate', 'Basic realm="Access to Index"')
-         res.status(401).send("Unauthorised access")
-     }
+   headers={"http_status":200, "cache-control":  "no-cache"}
+   body={"status": "available"}
+   res.status(200).send(body)
 })
 
 app.get("/health", (req ,res)=>{
    headers={"http_status":200, "cache-control":  "no-cache"}
    body={"status": "available"}
+   res.status(200).send(body)
 })
+
 
 
 app.post('/authorize', (req, res) => {
