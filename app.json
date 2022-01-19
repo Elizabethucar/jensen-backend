@@ -1,0 +1,8 @@
+{
+    "name": "jensen-backend",
+    "description": "Jensen Backend from Secure Networking",
+    "repository": "https://github.com/elizabeth/jensen-backend",
+    "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/main/public/node.svg",
+    "keywords": ["node", "express", "heroku"],
+    "image": "heroku/nodejs"
+  }
